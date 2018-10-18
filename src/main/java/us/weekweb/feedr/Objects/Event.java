@@ -14,10 +14,10 @@ public class Event {
     Date timeOfEvent;
     String description;
     FoodType typeOfFood;
-    User owner;
+    String ownerID;
 
-    public Event (User owner) {
-        this.owner = owner;
+    public Event (String ownerID) {
+        this.ownerID = ownerID;
     }
 
     public String getName() {
@@ -58,5 +58,9 @@ public class Event {
 
     public void setTypeOfFood(FoodType typeOfFood) {
         this.typeOfFood = typeOfFood;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
     }
 }
