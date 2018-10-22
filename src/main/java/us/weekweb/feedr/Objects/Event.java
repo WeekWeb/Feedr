@@ -11,12 +11,56 @@ public class Event {
 
     String name;
     String location;
-    Date time;
+    Date timeOfEvent;
     String description;
     FoodType typeOfFood;
-    User owner;
+    String ownerID;
 
-    public Event () {
+    public Event (String ownerID) {
+        this.ownerID = ownerID;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Date getTimeOfEvent() {
+        return timeOfEvent;
+    }
+
+    public void setTimeOfEvent(Date timeOfEvent) {
+        this.timeOfEvent = timeOfEvent;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public FoodType getTypeOfFood() {
+        return typeOfFood;
+    }
+
+    public void setTypeOfFood(FoodType typeOfFood) {
+        this.typeOfFood = typeOfFood;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
     }
 }
