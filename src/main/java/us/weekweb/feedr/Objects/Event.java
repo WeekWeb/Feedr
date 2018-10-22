@@ -45,7 +45,7 @@ public class Event {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
