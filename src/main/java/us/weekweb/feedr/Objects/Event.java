@@ -1,5 +1,7 @@
 package us.weekweb.feedr.Objects;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 
 public class Event {
@@ -8,6 +10,9 @@ public class Event {
     {
         MEXICAN, PIZZA, ITALIAN
     }
+
+    @Id
+    String id;
 
     String name;
     String location;
