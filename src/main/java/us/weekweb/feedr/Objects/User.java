@@ -1,6 +1,11 @@
 package us.weekweb.feedr.Objects;
 
+import org.springframework.data.annotation.Id;
+
 public class User {
+
+    @Id
+    String id;
 
     String email;
     String organizationName;
