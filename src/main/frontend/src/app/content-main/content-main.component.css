@@ -1,0 +1,8 @@
+#content-listings {
+  overflow:auto;
+  max-height: 100vh;
+}
+
+#content-listings ul li{
+  list-style:none;
+}
