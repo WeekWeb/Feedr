@@ -6,6 +6,7 @@ import { ContentMainComponent } from './content-main/content-main.component';
 import { LowbarMainComponent } from './lowbar-main/lowbar-main.component';
 import { TopbarMainComponent } from './topbar-main/topbar-main.component';
 import { SidebarMainComponent } from './sidebar-main/sidebar-main.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { SidebarMainComponent } from './sidebar-main/sidebar-main.component';
     ContentMainComponent,
     LowbarMainComponent,
     TopbarMainComponent,
-    SidebarMainComponent
+    SidebarMainComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule
