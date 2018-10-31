@@ -2,7 +2,7 @@ package us.weekweb.feedr.Objects;
 
 import org.springframework.data.annotation.Id;
 
-public class FeedrUser {
+public class User {
 
     @Id
     String id;
@@ -12,7 +12,7 @@ public class FeedrUser {
     String password;
     String defaultLocation;
 
-    public FeedrUser(String email) {
+    public User(String email) {
         this.email = email;
     }
 
@@ -26,6 +26,14 @@ public class FeedrUser {
 
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDefaultLocation() {

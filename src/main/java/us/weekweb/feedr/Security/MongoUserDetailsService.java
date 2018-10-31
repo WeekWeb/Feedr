@@ -1,29 +1,51 @@
-package us.weekweb.feedr.services;
+package us.weekweb.feedr.Security;
 
-import us.weekweb.feedr.Objects.FeedrUser;
-import us.weekweb.feedr.Security.UsersRepository;
+import us.weekweb.feedr.Objects.User;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class MongoUserDetailsService implements UserDetailsService {
     @Autowired
     private UsersRepository repository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
-        FeedrUser user = repository.findByEmail(email);
-        if (user == null) {
-            throw new EmailNotFoundException(“FeedrUser not found”);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = repository.findByEmail(email);
+        if(user != null) {
+            return buildUserForAuthentication(user);
+        } else {
+            throw new UsernameNotFoundException("email not found");
         }
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(“user”));
-        return new User(user.getEmail(), user.getPassword(), authorities);
+    }
+
+    public void saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        repository.save(user);
+    }
+
+    public User findUserByEmail(String email) throws UsernameNotFoundException {
+        return repository.findByEmail(email);
+    }
+
+    private UserDetails buildUserForAuthentication(User user) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }
 }
