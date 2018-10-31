@@ -2,17 +2,17 @@ package us.weekweb.feedr.Objects;
 
 import org.springframework.data.annotation.Id;
 
-public class User {
+public class FeedrUser {
 
     @Id
     String id;
 
     String email;
     String organizationName;
-    //String password; For figuring out password encyption
+    String password;
     String defaultLocation;
 
-    public User(String email) {
+    public FeedrUser(String email) {
         this.email = email;
     }
 
