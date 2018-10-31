@@ -7,6 +7,7 @@ import { ContentMainComponent } from './content-main/content-main.component';
 import { LowbarMainComponent } from './lowbar-main/lowbar-main.component';
 import { TopbarMainComponent } from './topbar-main/topbar-main.component';
 import { SidebarMainComponent } from './sidebar-main/sidebar-main.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 import { SearchBarFilterPipe } from './search-bar-filter.pipe';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SearchBarFilterPipe } from './search-bar-filter.pipe';
     LowbarMainComponent,
     TopbarMainComponent,
     SidebarMainComponent,
+    LoginPageComponent,
     SearchBarFilterPipe
   ],
   imports: [
