@@ -20,11 +20,9 @@ master
     LowbarMainComponent,
     TopbarMainComponent,
     SidebarMainComponent,
- create_event_page
-    CreateEventComponent
+    CreateEventComponent,
     LoginPageComponent,
     SearchBarFilterPipe
- master
   ],
   imports: [
     BrowserModule,
