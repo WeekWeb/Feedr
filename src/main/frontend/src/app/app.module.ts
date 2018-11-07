@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { HTTP_INTERCEPTORS} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { ContentMainComponent } from './content-main/content-main.component';
@@ -10,6 +12,17 @@ import { SidebarMainComponent } from './sidebar-main/sidebar-main.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SearchBarFilterPipe } from './search-bar-filter.pipe';
+import { AdminComponent } from './admin/admin.component';
+import { MainComponent } from './main/main.component';
+import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
+import {sessionInterceptor} from "./sessionInterceptor";
+import {HttpClientModule} from "@angular/common/http";
+
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home'},
+  { path: 'home', component: MainComponent},
+  { path: 'admin', component: AdminComponent}
+];
 
 @NgModule({
   declarations: [
@@ -20,13 +33,18 @@ import { SearchBarFilterPipe } from './search-bar-filter.pipe';
     SidebarMainComponent,
     CreateEventComponent,
     LoginPageComponent,
-    SearchBarFilterPipe
+    SearchBarFilterPipe,
+    SidebarAdminComponent,
+    MainComponent,
+    AdminComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule //needed for http get, post, delete etc...
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: sessionInterceptor, multi: true}],//interceptor
   bootstrap: [AppComponent]
 })
 export class AppModule { }
