@@ -12,7 +12,11 @@ public class User {
     String password;
     String defaultLocation;
 
-    public User(String email) {
+    public String getId() {
+        return id;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
