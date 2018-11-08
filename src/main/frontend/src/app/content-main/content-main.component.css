@@ -1,6 +1,6 @@
 #content-listings {
   overflow:auto;
-  max-height: 100vh;
+  padding-top: 40px;
 }
 
 #content-listings ul li{
