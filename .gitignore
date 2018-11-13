@@ -2,6 +2,8 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 application.properties
+node_modules
+
 ./src/main/frontend/node_modules/*
 
 ### STS ###

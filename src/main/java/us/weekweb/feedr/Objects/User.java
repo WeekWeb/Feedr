@@ -9,10 +9,14 @@ public class User {
 
     String email;
     String organizationName;
-    //String password; For figuring out password encyption
+    String password;
     String defaultLocation;
 
-    public User(String email) {
+    public String getId() {
+        return id;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -26,6 +30,14 @@ public class User {
 
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDefaultLocation() {
