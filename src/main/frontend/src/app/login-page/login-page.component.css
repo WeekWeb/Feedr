@@ -16,7 +16,8 @@ h1, h2, h3, h4, h5, h6, a {
   background:#57AEB7;
   border:.5px solid #fff;
   text-align:center;
-  font-size:300%;
+  font-size:400%;
+  font-family: 'Ubuntu', sans-serif;
 }
 /* .login-header h1 {
    text-shadow: 0px 5px 15px #000; */
@@ -64,6 +65,7 @@ h1, h2, h3, h4, h5, h6, a {
 }
 .sign-up{
   color:#f2f2f2;
+  font-size:125%;
   margin-left:-70%;
   cursor:pointer;
   text-decoration:underline;

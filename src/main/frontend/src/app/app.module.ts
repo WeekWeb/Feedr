@@ -36,7 +36,7 @@ const routes: Routes = [
     SearchBarFilterPipe,
     SidebarAdminComponent,
     MainComponent,
-    AdminComponent
+    AdminComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
