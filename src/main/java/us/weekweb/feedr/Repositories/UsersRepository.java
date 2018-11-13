@@ -1,4 +1,4 @@
-package us.weekweb.feedr.Security;
+package us.weekweb.feedr.Repositories;
 
 import us.weekweb.feedr.Objects.User;
 import org.springframework.data.mongodb.repository.MongoRepository;

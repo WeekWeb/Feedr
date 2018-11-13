@@ -3,20 +3,16 @@ package us.weekweb.feedr.Security;
 import us.weekweb.feedr.Objects.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import us.weekweb.feedr.Repositories.UsersRepository;
 
 @Service
 public class MongoUserDetailsService implements UserDetailsService {
@@ -31,7 +27,7 @@ public class MongoUserDetailsService implements UserDetailsService {
         if(user != null) {
             return buildUserForAuthentication(user);
         } else {
-            throw new UsernameNotFoundException("email not found");
+            return null;
         }
     }
 
