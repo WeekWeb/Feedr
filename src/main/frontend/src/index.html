@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <base href="/">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-------------------->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,14 +47,49 @@
       $('.collapse.in').toggleClass('in');
       $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
-
-
   });
 
+</script>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById('id01');
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 
 </script>
+<!---
+<script type="text/javascript">
+  $('.error-page').hide(0);
+
+  $('.login-button , .no-access').click(function(){
+    $('.login').slideUp(500);
+    $('.error-page').slideDown(1000);
+  });
+
+  $('.try-again').click(function(){
+    $('.error-page').hide(0);
+    $('.login').slideDown(1000);
+  });$('.error-page').hide(0);
+
+  $('.login-button , .no-access').click(function(){
+    $('.login').slideUp(500);
+    $('.error-page').slideDown(1000);
+  });
+
+  $('.try-again').click(function(){
+    $('.error-page').hide(0);
+    $('.login').slideDown(1000);
+  });
+
+</script>
+---->
 
 </body>
 
 </html>
-
