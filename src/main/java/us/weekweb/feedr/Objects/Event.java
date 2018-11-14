@@ -21,6 +21,8 @@ public class Event {
     FoodType typeOfFood;
     String ownerEmail;
 
+    public Event() {}
+
     public Event (String email) {
         this.ownerEmail = email;
     }

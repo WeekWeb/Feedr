@@ -1,16 +1,20 @@
 package us.weekweb.feedr.Controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import us.weekweb.feedr.Objects.Token;
 import us.weekweb.feedr.Objects.Event;
 import us.weekweb.feedr.Services.MongoEventService;
 import us.weekweb.feedr.Services.MongoTokenService;
+
+import java.util.Map;
 
 @Controller
 public class CRUDController {
@@ -19,8 +23,10 @@ public class CRUDController {
     MongoTokenService tokenDb;
     @Autowired
     MongoEventService eventDb;
+    @Autowired
+    ObjectMapper mapper;
 
-    @RequestMapping(value = "/events/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/event/user", method = RequestMethod.GET)
     public ResponseEntity getUsersEvents(@RequestBody Token token) {
         try {
             if(!tokenValid(token))
@@ -32,7 +38,7 @@ public class CRUDController {
         }
     }
 
-    @RequestMapping(value = "/events/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/event/all", method = RequestMethod.GET)
     public ResponseEntity getEvents() {
         try {
             return ResponseEntity.ok(eventDb.loadEvents());
@@ -42,17 +48,17 @@ public class CRUDController {
     }
 
     @RequestMapping(value = "/event", method = RequestMethod.POST)
-    public ResponseEntity createEvent(@RequestBody Event event, @RequestBody Token token) {
+    public ResponseEntity createEvent(@RequestBody Event event, @RequestHeader(value = "token") String tokenHash) {
         try {
-            if(tokenValid(token) && event.getOwnerEmail().equals(token.getEmail())) {
-                if (event.getTimeOfEvent() == null ||
-                        event.getLocation() == null ||
-                        event.getName() == null ||
-                        event.getTypeOfFood() == null) {
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("One of the required feilds is null");
-                } else {
+            if(tokenValid(new Token(event.getOwnerEmail(), tokenHash))) {
+                if (event.getTimeOfEvent() != null &&
+                        event.getLocation() != null &&
+                        event.getName() != null &&
+                        event.getTypeOfFood() != null) {
                     eventDb.upsertEvent(event);
                     return ResponseEntity.ok("Event uploaded");
+                } else {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("One of the required feilds is null");
                 }
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad token");
@@ -63,18 +69,17 @@ public class CRUDController {
     }
 
     @RequestMapping(value = "/event", method = RequestMethod.DELETE)
-    public ResponseEntity deleteEvent(@RequestBody String id, @RequestBody Token token) {
+    public ResponseEntity deleteEvent(@RequestBody Event event, @RequestHeader(value = "token") String tokenHash) {
         try {
-            Event event = eventDb.loadEventById(id);
             if (event != null) {
-                if (tokenValid(token) && event.getOwnerEmail().equals(token.getEmail())) {
+                if (tokenValid(new Token(event.getOwnerEmail(), tokenHash))) {
                     eventDb.deleteEvent(event);
                     return ResponseEntity.ok("Event deleted");
                 } else {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad token");
                 }
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not find Event wit id '" + id + "'.");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Could not find Event wit id '" + event.getId() + "'.");
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
