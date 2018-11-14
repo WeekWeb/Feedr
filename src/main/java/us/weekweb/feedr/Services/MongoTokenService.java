@@ -1,4 +1,4 @@
-package us.weekweb.feedr.Security;
+package us.weekweb.feedr.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

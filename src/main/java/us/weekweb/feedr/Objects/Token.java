@@ -14,6 +14,11 @@ public class Token {
 
     public Token() {};
 
+    public Token(String email, String hash) {
+        this.email = email;
+        this.hash = hash;
+    }
+
     public Token(String email) {
         SecureRandom random = new SecureRandom();
         byte bytes[] = new byte[20];
