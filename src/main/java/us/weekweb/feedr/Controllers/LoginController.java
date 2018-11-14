@@ -7,8 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import us.weekweb.feedr.Objects.Token;
 import us.weekweb.feedr.Objects.User;
-import us.weekweb.feedr.Security.MongoTokenService;
-import us.weekweb.feedr.Security.MongoUserDetailsService;
+import us.weekweb.feedr.Services.MongoTokenService;
+import us.weekweb.feedr.Services.MongoUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

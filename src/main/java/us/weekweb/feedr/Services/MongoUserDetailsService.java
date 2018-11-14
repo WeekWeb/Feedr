@@ -1,4 +1,4 @@
-package us.weekweb.feedr.Security;
+package us.weekweb.feedr.Services;
 
 import us.weekweb.feedr.Objects.User;
 
