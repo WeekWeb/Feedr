@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import us.weekweb.feedr.Objects.Token;
 import us.weekweb.feedr.Objects.Event;
 import us.weekweb.feedr.Services.MongoEventService;
@@ -26,6 +23,7 @@ public class CRUDController {
     @Autowired
     ObjectMapper mapper;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/event/user", method = RequestMethod.GET)
     public ResponseEntity getUsersEvents(@RequestBody Token token) {
         try {
@@ -38,6 +36,7 @@ public class CRUDController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/event/all", method = RequestMethod.GET)
     public ResponseEntity getEvents() {
         try {
@@ -47,6 +46,7 @@ public class CRUDController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/event", method = RequestMethod.POST)
     public ResponseEntity createEvent(@RequestBody Event event, @RequestHeader(value = "token") String tokenHash) {
         try {
@@ -68,6 +68,7 @@ public class CRUDController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/event", method = RequestMethod.DELETE)
     public ResponseEntity deleteEvent(@RequestBody Event event, @RequestHeader(value = "token") String tokenHash) {
         try {

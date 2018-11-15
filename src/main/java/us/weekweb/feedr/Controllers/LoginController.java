@@ -29,6 +29,7 @@ public class LoginController {
      * This will take in a in a User object
      * It will then return a token on success of creating an account
      */
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity signup(@RequestBody User user) {
         try {
@@ -55,6 +56,7 @@ public class LoginController {
      * This will take in a Map<String, String> that will map email->the users email and password->users password
      * It will then return a fail to authenicate error on failure or a token on success
      */
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity login(@RequestBody Map<String, String> loginInfo) {
         UserDetails user = userDb.loadUserByUsername(loginInfo.get("email"));
@@ -76,6 +78,7 @@ public class LoginController {
      * This will take in a String that a token and check if it is valid
      * It will then return a fail to authenicate error on failure or a token on success
      */
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public ResponseEntity token(@RequestBody Token token) {
         try {
