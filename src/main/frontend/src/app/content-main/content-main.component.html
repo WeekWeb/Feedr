@@ -11,7 +11,7 @@
       <li *ngFor="let event of events | searchBarFilter:term">
           <h2>{{event.name}}</h2>
           <p>{{event.description}}</p>
-          <p><span>Date: {{event.date}}</span><span>  |  </span><span>Address: {{event.address}}</span></p>
+          <p><span>Date: {{event.timeOfEvent}}</span><span>  |  </span><span>Location: {{event.location}}</span></p>
         <div class = "line"></div>
       </li>
     </ul>
