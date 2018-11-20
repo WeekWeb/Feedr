@@ -26,5 +26,6 @@ node_modules
 /nbproject/private/
 /nbbuild/
 dist
+resources/static
 /nbdist/
 /.nb-gradle/
