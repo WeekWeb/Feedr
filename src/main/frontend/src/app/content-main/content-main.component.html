@@ -1,19 +1,22 @@
 <div id="content">
   <div id="search">
-    <form class="navbar-form " id = "topbarsearc">
+    <form class="navbar-form topbarsearc">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "term" [ngModelOptions]="{standalone: true}">
       </div>
     </form>
   </div>
-  <div id="content-listings">
-    <ul>
-      <li *ngFor="let event of events | searchBarFilter:term">
-          <h2>{{event.name}}</h2>
-          <p>{{event.description}}</p>
-          <p><span>Date: {{event.timeOfEvent}}</span><span>  |  </span><span>Location: {{event.location}}</span></p>
+  <div id="content-listings" class ="col-sm-8">
+    <ul >
+      <li *ngFor="let event of events | searchBarFilter:term" >
+        <h2>{{event.name}}</h2>
+        <p>{{event.description}}</p>
+        <p><span>Date: {{event.timeOfEvent}}</span><span>  |  </span><span>Address: {{event.location}}</span></p>
         <div class = "line"></div>
       </li>
     </ul>
   </div>
+
+  <app-google-map-frame></app-google-map-frame>
+
 </div>

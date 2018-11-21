@@ -3,8 +3,14 @@
 body {
   font-family: 'Poppins', sans-serif;
   background: #fafafa;
+  height: 100%;
+  overflow: hidden;
 }
 
+li{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
 p {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1em;
@@ -41,7 +47,6 @@ a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
-
 #sidebar {
   width: 230px;
   position: fixed; /*we dont want it to be scrolled, so it is fxied at a position relative to viewport*/
@@ -49,17 +54,16 @@ a:focus {
   left: 0;
   min-height: 100vh;/* minimum height is equal to 100% height of viewport*/
   z-index: 999;
-  background: #57AEB7;
-  color: #fff;
+  background: white;
   transition: all 0.3s;
   padding-top: 140px;/* padding of login, logout, create event button etc... within the sidebar*/
   padding-bottom: 45px;
+  border-right: dotted #f1c40f 2px;
 }
 
 #sidebar.active {
   margin-left: -250px;/* move the sidebar to left by setting margin to negative number. margin is space between html element*/
 }
-
 
 #sidebar ul.components {
   padding: 20px 0;
@@ -71,11 +75,14 @@ a:focus {
   font-size: 1.1em;
   display: block;
   text-align: left;
+  border-bottom: solid #f1c40f 1px;
+  border-top: solid #f1c40f 1px;
+  border-radius: 0px;
 }
 
 #sidebar ul li a:hover {
-  color: #047DE5;
-  background: #fff;
+  color: white;
+  background: #f1c40f;
 }
 
 #sidebar ul li.active>a,
@@ -110,34 +117,74 @@ ul.CTAs a {
     CONTENT STYLE
 ----------------------------------------------------- */
 
-#content {
-  width: calc(100% - 250px);/* subtracts  250px from width. Makes content shrink when the sidebar displays*/
+#search {
+  position: fixed; /* we dont want it to be scrolled, so it is fixed at a position relative to viewport*/
+  background-color: #f1c40f;
+  width: 160%;
+  margin-top: 135px;
+  padding-left: 30px;
+  margin-left: -22px;
+}
+
+.topbarsearc input[type=text]{
+  width: 480px !important;
+}
+
+#contentadmin {
+  width: calc(100% - 250px);
   padding: 0px;
-  min-height: 100vh;
   transition: all 0.3s;
-  position: absolute; /* the position of the content is relative to html body's top left hand corner*/
+  position: absolute;
+  height: 100%;
   top: 0;
   right: 0;
-  padding-top: 140px; /* padding of content-list, search bar within the content*/
+  bottom: 0;
+}
 
+#content {
+  width: calc(100% - 250px);
+  transition: all 0.3s;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+#content-listings {
+  position: absolute;
+  margin-top: 188px;
+  height:70%;
+  width: 60%;
+  overflow-y: scroll;
+  padding-bottom: 10%;
+}
+
+#contentadmin-listings {
+  position: absolute;
+  margin-top: 188px;
+  height:70%;
+  width: 60%;
+  overflow-y: scroll;
+  padding-bottom: 10%;
 }
 
 #content.active {
-  width: 100%; /*make the content expend when sidebar is not displayed*/
-}
-
-#search {
-  position: fixed; /* we dont want it to be scrolled, so it is fixed at a position relative to viewport*/
-  background-color: white;
   width: 100%;
-  margin-top: -2px;
 }
-/* ---------------------------------------------------
-    TOPBAR
------------------------------------------------------ */
 
-#topbarsearc input[type=text]{
-  width: 480px !important;
+#contentadmin.active {
+  width: 100%;
+}
+
+#gmap {
+  height: 150%;
+  background-color: white;
+  margin-top: 180px;
+  position: absolute;
+  top: 8px;
+  bottom: 0;
+  right: 0;
+  width: 40%;
 }
 
 /* ---------------------------------------------------
@@ -156,16 +203,29 @@ ul.CTAs a {
   #sidebar {
     margin-left: 0px;
     padding-top: 130px;
-
   }
   #sidebar.active {
     margin-left: -250px;
   }
   #content {
     width: 100%;
-    padding-top: 200px;
-    padding-bottom: 100px;
-    padding-left: 40px;
+  }
+  #content-listings{
+    margin-top: 200px;
+    height: 55%;
+    width: 100%;
+  }
+  #contentadmin-listings {
+    margin-top: 200px;
+    height: 55%;
+    width: 100%;
+  }
+
+  #gmap{
+    display: none;
+  }
+  #contentadmin {
+    width: 100%;
   }
   #content.active {
     /* here is empty because we want sidebar to be over the content when the website is on mobile device*/
@@ -179,15 +239,13 @@ ul.CTAs a {
   #lownavbar{
     display: block;
   }
-  #topbarsearc input[type=text]{
+  .topbarsearc input[type=text]{
     width: 90% !important;
   }
   #search {
-    margin-top: -70px;
-    margin-left: -20px;
+    top: -10px;
+    margin-left: -2%;
+    width: 102%
   }
-  #content-listings {
-    margin-top: -60px;
-    margin-left: -40px;
-  }
+
 }

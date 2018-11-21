@@ -12,7 +12,7 @@ import {EventService} from "../event.service";
 export class ContentMainComponent implements OnInit {
 
   public term;
-  public events;/* = [
+  public events = [];/* = [
     { name: 'asdf',
       description: 'hello my baby',
       date: '1/1/2000',
@@ -37,13 +37,12 @@ export class ContentMainComponent implements OnInit {
   */
 
   constructor(private eventService: EventService) {
-  }
-
-
-
-  ngOnInit() {
     this.eventService.getAllEvents().subscribe((data) => this.events = data);
     console.log(this.events);
+  }
+
+  ngOnInit() {
+
   }
 
 }

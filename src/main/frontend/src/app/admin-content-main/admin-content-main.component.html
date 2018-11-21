@@ -1,0 +1,29 @@
+<div id="contentadmin">
+
+  <div id="search">
+    <form class="navbar-form topbarsearc">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)] = "term" [ngModelOptions]="{standalone: true}">
+      </div>
+    </form>
+  </div>
+
+  <div id="contentadmin-listings" class ="col-sm-6">
+    <ul>
+      <li *ngFor="let i = index; let event of events | searchBarFilter:term" >
+        <app-edit-event [event]="event" [idnum]="i"></app-edit-event>
+        <h2><span>{{event.name}}</span>
+          <button id= "edit_event" class='btn btn-default pull-right' data-toggle="modal" [attr.data-target]="'#'+'edit_event_'+i"><span style="display: none">{{event.id}}</span><span style="display: none">{{event.name}}</span><span style="display: none">{{event.description}}</span><span style="display: none">Address: {{event.address}}</span>
+            <span class="glyphicon glyphicon-edit"></span>Edit</button></h2>
+        <p><span>{{event.description}}</span><button class='btn btn-default pull-right' ><span style="display: none">{{event.id}}</span><span class="glyphicon glyphicon-remove"></span>Del</button></p>
+        <p><span>Date: {{event.timeOfEvent}}</span><span>  |  </span><span>Address: {{event.location}}</span></p>
+
+        <div class = "line"></div>
+      </li>
+    </ul>
+  </div>
+
+  <app-google-map-frame></app-google-map-frame>
+
+</div>
+

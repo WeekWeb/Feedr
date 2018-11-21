@@ -14,17 +14,6 @@ export class SidebarMainComponent implements OnInit {
 
   ngOnInit() {
   }
-  testingFunction(event){//example how to subscribe to service and handle error/data
-    this.cs.AdminAddContent({
-      "name": "happy",    //submit the data. For example, for login the data will be a json containing username and password
-      "date": "3/3/1990",
-      "location": "123"
-    }).subscribe(data=>{
-      console.log(data);  //handle response if request is successfull, data contain the response data
-    }, (error)=>{   //handle error if request is not successfull
-      console.log(error);
-    });
-    return false;
-  }
+
 
 }
