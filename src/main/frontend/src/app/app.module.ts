@@ -17,6 +17,9 @@ import { MainComponent } from './main/main.component';
 import { SidebarAdminComponent } from './sidebar-admin/sidebar-admin.component';
 import {sessionInterceptor} from "./sessionInterceptor";
 import {HttpClientModule} from "@angular/common/http";
+import { AdminContentMainComponent } from './admin-content-main/admin-content-main.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
+import { GoogleMapFrameComponent } from './google-map-frame/google-map-frame.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -37,6 +40,9 @@ const routes: Routes = [
     SidebarAdminComponent,
     MainComponent,
     AdminComponent,
+    AdminContentMainComponent,
+    EditEventComponent,
+    GoogleMapFrameComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

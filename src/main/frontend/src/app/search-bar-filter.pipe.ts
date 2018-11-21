@@ -11,8 +11,8 @@ export class SearchBarFilterPipe implements PipeTransform {
     return events.filter((event) => {
       return  event.name.toLowerCase().includes(term.toLowerCase()) ||
               event.description.toLowerCase().includes(term.toLowerCase()) ||
-              event.date.includes(term) ||
-              event.address.toLowerCase().includes(term.toLowerCase());
+              event.timeOfEvent.includes(term) ||
+              event.location.toLowerCase().includes(term.toLowerCase());
     });
   }
 
