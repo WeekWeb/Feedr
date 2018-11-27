@@ -13,6 +13,7 @@ import us.weekweb.feedr.Services.MongoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -87,10 +88,14 @@ public class LoginController {
                 if(foundToken == null)
                     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with email '" + token.getEmail() + "' not found.");
 
-                if(foundToken.getHash().equals(token.getHash()))
+                if(foundToken.getHash().equals(token.getHash()) && foundToken.getExpirationDate().after(new Date())) {
+                    //If we successfully authenticate, we need to reset expiration date on the token
+                    foundToken.setExpirationDate();
+                    tokenDb.saveToken(foundToken);
                     return ResponseEntity.ok("Good token");
-                else
+                } else {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token failed. Bad token");
+                }
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("One of the fields for the token is null");
             }
