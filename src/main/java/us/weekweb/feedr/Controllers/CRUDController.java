@@ -11,6 +11,7 @@ import us.weekweb.feedr.Objects.Event;
 import us.weekweb.feedr.Services.MongoEventService;
 import us.weekweb.feedr.Services.MongoTokenService;
 
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -88,6 +89,14 @@ public class CRUDController {
     }
 
     private boolean tokenValid(Token token) {
-        return tokenDb.loadTokenByUsername(token.getEmail()).getHash().equals(token.getHash());
+        Token foundToken = tokenDb.loadTokenByUsername(token.getEmail());
+        if(foundToken.getHash().equals(token.getHash()) && foundToken.getExpirationDate().after(new Date())) {
+            //If we successfully authenticate, we need to reset expiration date on the token
+            foundToken.setExpirationDate();
+            tokenDb.saveToken(foundToken);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
