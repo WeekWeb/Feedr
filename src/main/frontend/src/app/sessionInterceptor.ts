@@ -19,18 +19,18 @@ export class sessionInterceptor implements HttpInterceptor{//interceptor will in
   }
   intercept(req:HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     let request = req.clone({
-      headers: new HttpHeaders().append('session', "weebWeb") //add session to request
+
     });
     return next.handle(request).pipe(//handle error from response. we handle error here because we dont want to handle it at each component that make request
       catchError( err => {
         if (err.status == 404) {
-
+          console.log("404");
         }
         if (err.status == 401){
-
+          console.log("401");
         }
         if(err.status == 403){
-
+          console.log("403");
         }else{
         }
         return throwError(err);

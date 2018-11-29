@@ -6,15 +6,15 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" >&times;</button>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h1>Feedr</h1>
           </div>
           <div class="login-form">
             <h3 for="uname"><b>Username</b></h3>
-            <input type="text" placeholder="Enter Username" name="uname" required ngModel #uname><br>
+            <input type="text" placeholder="Enter Username" name="uname" required [(ngModel)]="userlogin.email"><br>
 
             <h3 for="psw"><b>Password</b></h3>
-            <input type="password" placeholder="Enter Password" name="psw" required ngModel #upsw><br>
+            <input type="password" placeholder="Enter Password" name="psw" required [(ngModel)]="userlogin.password" ><br>
 
             <input type="button" value="Login"  class = "btn btn-primary mb-2" (click)="loginSubmit()" data-dismiss="modal" />
             <br>
@@ -39,21 +39,19 @@
       </div>
       <div class="login-form">
         <h3 for = "name"><b>Organization Name</b></h3>
-        <input type = "text" placeholder="Enter Organization Name" name = "name" required><br>
+        <input type = "text" placeholder="Enter Organization Name" name = "rname" required [(ngModel)]="user.organizationName"><br>
 
         <h3 for="email"><b>Email</b></h3>
-        <input type="text" placeholder="Enter Email" name="email" required><br>
+        <input type="text" placeholder="Enter Email" name="remail" required ngModel #remail [(ngModel)]="user.email"><br>
 
         <h3 for="psw"><b>Password</b></h3>
-        <input type="password" placeholder="Enter Password" name="psw" required><br>
+        <input type="password" placeholder="Enter Password" name="rpsw" required #rpsw [(ngModel)]="user.password"><br>
 
         <h3 for="psw-repeat"><b>Retype Password</b></h3>
         <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
 
-        <input type="button" value="Sign Me Up" class = "login-button"/>
+        <input type="button" value="Sign Me Up" class = "login-button" (click)="signupSubmit()" data-dismiss="modal"/>
         <br>
-
-
       </div>
 
     </div>

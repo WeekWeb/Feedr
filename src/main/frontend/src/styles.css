@@ -58,7 +58,7 @@ a:focus {
   transition: all 0.3s;
   padding-top: 140px;/* padding of login, logout, create event button etc... within the sidebar*/
   padding-bottom: 45px;
-  border-right: dotted #f1c40f 2px;
+  border-right: dotted #57AEB7 2px;
 }
 
 #sidebar.active {
@@ -67,7 +67,7 @@ a:focus {
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+  border-bottom: 1px solid #57AEB7;
 }
 
 #sidebar ul li a {
@@ -75,14 +75,14 @@ a:focus {
   font-size: 1.1em;
   display: block;
   text-align: left;
-  border-bottom: solid #f1c40f 1px;
-  border-top: solid #f1c40f 1px;
+  border-bottom: solid #57AEB7 1px;
+  border-top: solid #57AEB7 1px;
   border-radius: 0px;
 }
 
 #sidebar ul li a:hover {
   color: white;
-  background: #f1c40f;
+  background: #57AEB7;
 }
 
 #sidebar ul li.active>a,
@@ -119,7 +119,7 @@ ul.CTAs a {
 
 #search {
   position: fixed; /* we dont want it to be scrolled, so it is fixed at a position relative to viewport*/
-  background-color: #f1c40f;
+  background-color: #57AEB7;
   width: 160%;
   margin-top: 135px;
   padding-left: 30px;
