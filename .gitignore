@@ -1,7 +1,7 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
-application.properties
+
 node_modules
 
 
@@ -25,6 +25,6 @@ node_modules
 /nbproject/private/
 /nbbuild/
 dist
-resources/static
+/static/
 /nbdist/
 /.nb-gradle/

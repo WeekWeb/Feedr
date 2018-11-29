@@ -41,7 +41,7 @@ public class LoginController {
                 UserDetails is_user = userDb.loadUserByUsername(user.getEmail());
                 if(is_user == null) {
                     userDb.saveUser(user);
-                    return ResponseEntity.ok(createToken(user.getEmail()));
+                    return ResponseEntity.ok(getToken(user.getEmail()));
                 } else {
                     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already exists");
                 }
@@ -65,11 +65,8 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with email '" + "' not found.");
 
         if(bCryptPasswordEncoder.matches(loginInfo.get("password"), user.getPassword())) {
-            Token token = createToken(loginInfo.get("email"));
-            if(token != null)
-                return ResponseEntity.ok(token);
-            else
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already logged in!");
+            Token token = getToken(loginInfo.get("email"));
+            return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed. Incorrect Password");
         }
@@ -104,13 +101,14 @@ public class LoginController {
         }
     }
 
-    private Token createToken(String email) {
-        if(tokenDb.loadTokenByUsername(email) == null) {
+    private Token getToken(String email) {
+        Token token = tokenDb.loadTokenByUsername(email);
+        if(token == null || token.getExpirationDate().before(new Date())) {
             Token newToken = new Token(email);
             tokenDb.saveToken(newToken);
             return newToken;
         } else {
-            return null;
+            return token;
         }
     }
 }
