@@ -13,10 +13,10 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getAllEvents():Observable<EventContent[]>{
-    return this.http.get<EventContent[]>('http://localhost:8080/event/all');
+    return this.http.get<EventContent[]>('https://feedr.weekweb.us/event/all');
   }
   getUserEvents(token:string){
     //create object for request parameters
-    return this.http.post('http://localhost:8080/event/user', token);
+    return this.http.post('https://feedr.weekweb.us/event/user', token);
   }
 }
