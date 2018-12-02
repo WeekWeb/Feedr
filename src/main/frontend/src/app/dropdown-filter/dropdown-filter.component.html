@@ -1,0 +1,8 @@
+<div ngbDropdown class="dropdown">
+  <button ngbDropdownToggle class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter by type
+  </button>
+  <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a *ngFor="let foodType of foodTypes; let i = index" (click)="onButtonClick(foodType)" class="dropdown-item">{{foodType}}</a>
+  </div>
+</div>
