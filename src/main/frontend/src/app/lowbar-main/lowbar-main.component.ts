@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class LowbarMainComponent implements OnInit {
 
   constructor() { }
-
   ngOnInit() {
   }
-
+  refresh(){
+    location.reload();
+  }
 }

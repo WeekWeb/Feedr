@@ -27,9 +27,10 @@ export class LoginPageComponent implements OnInit {
       result => {
         // Handle result
         localStorage.setItem('hash',result.hash);
-        console.log(localStorage.getItem('hash'));
+        localStorage.setItem('email',result.email);
       },
       error => {
+
       },
       () => {
         this.rou.navigateByUrl('/admin');
@@ -38,21 +39,25 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginSubmit(){
-    this.login.loginAccount(this.userlogin).subscribe(
+    this.login.loginAccount(this.userlogin).subscribe(//
       result => {
         // Handle result
         localStorage.setItem('hash',result.hash);
-        console.log(localStorage.getItem('hash'));
+        localStorage.setItem('email',result.email);
       },
       error => {
+
       },
       () => {
         this.rou.navigateByUrl('/admin');
       }
     );
   }
+
+
+
   ngOnInit() {
-    
+
   }
 
 
