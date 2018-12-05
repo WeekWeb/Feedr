@@ -19,19 +19,37 @@ export class sessionInterceptor implements HttpInterceptor{//interceptor will in
   }
   intercept(req:HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     let request = req.clone({
-
+      headers: req.headers.set('token', localStorage.getItem("hash"))
     });
-    return next.handle(request).pipe(//handle error from response. we handle error here because we dont want to handle it at each component that make request
+    return next.handle(request).pipe(
       catchError( err => {
-        if (err.status == 404) {
+        if(err.status == 400){
+          console.log("Some fields are empty or user already exist");
+          console.log("400");
+        }
+        if (err.status == 404){
           console.log("404");
         }
         if (err.status == 401){
-          console.log("401");
+          console.log("Unauthurized. Please login again");
+          if(this.rou.url == "/admin"){
+            localStorage.setItem("hash","");
+            localStorage.setItem("email","");
+            this.rou.navigateByUrl("/home");
+          }
         }
         if(err.status == 403){
           console.log("403");
-        }else{
+        }
+        if(err.status == 500){
+          console.log("Bad email+hash or bad server error. Please login again");
+          if(this.rou.url == "/admin"){
+            localStorage.setItem("hash","");
+            localStorage.setItem("email","");
+            this.rou.navigateByUrl("/home");
+          }
+        }
+        else{
         }
         return throwError(err);
       })

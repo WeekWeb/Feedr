@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS} from "@angular/common/http";
 
+
 import { AppComponent } from './app.component';
 import { ContentMainComponent } from './content-main/content-main.component';
 import { LowbarMainComponent } from './lowbar-main/lowbar-main.component';
@@ -20,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { AdminContentMainComponent } from './admin-content-main/admin-content-main.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { GoogleMapFrameComponent } from './google-map-frame/google-map-frame.component';
+import { LowbarAdminComponent } from './lowbar-admin/lowbar-admin.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -43,6 +45,7 @@ const routes: Routes = [
     AdminContentMainComponent,
     EditEventComponent,
     GoogleMapFrameComponent,
+    LowbarAdminComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

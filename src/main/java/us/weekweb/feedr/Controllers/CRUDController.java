@@ -24,7 +24,7 @@ public class CRUDController {
     ObjectMapper mapper;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/event/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/event/user", method = RequestMethod.POST)
     public ResponseEntity getUsersEvents(@RequestBody Token token) {
         try {
             if(!tokenValid(token))
@@ -54,7 +54,7 @@ public class CRUDController {
                 if (event.getTimeOfEvent() != null &&
                         event.getLocation() != null &&
                         event.getName() != null &&
-                        event.getTypeOfFood() != null) {
+                        event.getTypeOfFood() != null ) {
                     eventDb.upsertEvent(event);
                     return ResponseEntity.ok("Event uploaded");
                 } else {
@@ -69,7 +69,7 @@ public class CRUDController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/event", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/event/delete", method = RequestMethod.POST)
     public ResponseEntity deleteEvent(@RequestBody Event event, @RequestHeader(value = "token") String tokenHash) {
         try {
             if (event != null) {

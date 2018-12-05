@@ -6,27 +6,46 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" (click)="editClose()" data-dismiss="modal">&times;</button>
           <label for="uname"><b>Edit Event Here!</b></label><br/>
         </div>
         <div class="modal-body">
           <label for="ename"><b>Event name:</b></label><br/>
-          <input type="text" placeholder="What is the name of this event?" name="ename" value={{event.name}} style="width:300px;" required><br/><br/>
+          <input type="text" placeholder="What is the name of this event?" name="ename" [(ngModel)]="eventedit.name" (change)="nameChange($event)" style="width:300px;" required><br/><br/>
 
           <label for="eloc"><b>Event Location:</b></label><br/>
-          <input type="text" placeholder="Where can we find this event?" name="eloc" value={{event.location}} style="width:300px;" required><br/><br/>
+          <input type="text" placeholder="Where can we find this event?" name="eloc" [(ngModel)]="eventedit.location"  (change)="locationChange($event)" style="width:300px;" required><br/><br/>
 
           <label for="edate"><b>Event Date:</b></label><br/>
-          <input type="date" name="edate" min="2018-11-13" max="2020-11-13" required><br/><br/>
+          <input type="date" name="edate" min="2018-11-13" max="2020-11-13" [(ngModel)]="mdyedit" (change)="mdyChange($event)" required><br/><br/>
 
+          <label for="etime"><b>Event Time:</b></label><br/>
+          <input type="time" name="etime" min="00:00" max="23:59" [(ngModel)]="timeedit" (change)="timeChange($event)" required><br/><br/>
+
+          <div class="form-group">
+            <label class="font-noraml">
+              Food Type
+            </label>
+            <div class="input-group">
+              <select data-placeholder="Select..." class="form-control chosen-select" style="width:150px;" tabindex="2" [(ngModel)]="eventedit.typeOfFood" (change)="tyepChange($event)">
+                <option value="ITALIAN">
+                  ITALIAN
+                </option>
+                <option value="MEXICAN">
+                  MEXICAN
+                </option>
+                <option value="PIZZA">
+                  PIZZA
+                </option>
+              </select>
+            </div>
+          </div>
           <label for="edesc"><b>Event Description:</b></label><br/>
-          <textarea id ="edesc" placeholder="What can you tell us about the event?" name="edesc" value="{{event.description}}" style="width:300px;height:200px" required></textarea><br/><br/>
-
-          <button type="submit">Edit Event!</button>
-
+          <textarea id ="edesc" placeholder="What can you tell us about the event?" name="edesc" [(ngModel)]="eventedit.description" (change)="decChange($event)" style="width:300px;height:200px" required></textarea><br/><br/>
+          <button type="button" (click)="editSubmit()" data-dismiss="modal">Edit Event!</button>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" (click)="editClose()" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
