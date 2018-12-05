@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS} from "@angular/common/http";
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 
+
 import { AppComponent } from './app.component';
 import { ContentMainComponent } from './content-main/content-main.component';
 import { LowbarMainComponent } from './lowbar-main/lowbar-main.component';
@@ -22,6 +23,10 @@ import {HttpClientModule} from "@angular/common/http";
 import { AdminContentMainComponent } from './admin-content-main/admin-content-main.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { GoogleMapFrameComponent } from './google-map-frame/google-map-frame.component';
+import { LowbarAdminComponent } from './lowbar-admin/lowbar-admin.component';
+import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FoodTypeService } from "./food-type-service.service";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -45,6 +50,8 @@ const routes: Routes = [
     AdminContentMainComponent,
     EditEventComponent,
     GoogleMapFrameComponent,
+    LowbarAdminComponent,
+    DropdownFilterComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -53,12 +60,15 @@ const routes: Routes = [
       apiKey: 'AIzaSyDvLtYPYyASlQKppwzjsx7lsk9_aTgmO0A'
     }),
     FormsModule,
-    HttpClientModule //needed for http get, post, delete etc...
+    HttpClientModule, //needed for http get, post, delete etc...
+    NgbModule.forRoot()
   ],
+
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: sessionInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: sessionInterceptor, multi: true}, FoodTypeService,
     GoogleMapsAPIWrapper
     ],//interceptor
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

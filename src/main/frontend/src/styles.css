@@ -1,4 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -32,7 +33,7 @@ a:focus {
   background: #fff;
   border: none;
   border-radius: 0;
-  margin-bottom: 0px;
+  margin-bottom: -2px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -50,7 +51,7 @@ a:focus {
 #sidebar {
   width: 230px;
   position: fixed; /*we dont want it to be scrolled, so it is fxied at a position relative to viewport*/
-  top: 0;
+  top: -5px;
   left: 0;
   min-height: 100vh;/* minimum height is equal to 100% height of viewport*/
   z-index: 999;
@@ -113,6 +114,10 @@ ul.CTAs a {
   margin-bottom: 18px;
 }
 
+
+
+
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -136,7 +141,7 @@ ul.CTAs a {
   transition: all 0.3s;
   position: absolute;
   height: 100%;
-  top: 0;
+  top: -5px;
   right: 0;
   bottom: 0;
 }
@@ -146,7 +151,7 @@ ul.CTAs a {
   transition: all 0.3s;
   position: absolute;
   height: 100%;
-  top: 0;
+  top: -5px;
   right: 0;
   bottom: 0;
 }
@@ -203,9 +208,11 @@ ul.CTAs a {
   #sidebar {
     margin-left: 0px;
     padding-top: 130px;
+    display: none;
   }
   #sidebar.active {
     margin-left: -250px;
+    display: none;
   }
   #content {
     width: 100%;

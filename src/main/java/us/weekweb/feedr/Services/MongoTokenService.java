@@ -1,18 +1,15 @@
 package us.weekweb.feedr.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import us.weekweb.feedr.Objects.Token;
-import us.weekweb.feedr.Objects.User;
 import us.weekweb.feedr.Repositories.TokenRepository;
-import us.weekweb.feedr.Repositories.UsersRepository;
 
-import java.util.ArrayList;
+
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -22,7 +19,19 @@ public class MongoTokenService {
     private TokenRepository repository;
 
     public Token loadTokenByUsername(String email) throws UsernameNotFoundException {
-        return repository.findByEmail(email);
+        Sort sort = new Sort(Sort.Direction.ASC, "expirationDate");
+        List<Token> tokens = repository.findByEmail(email, sort);
+        Iterator<Token> it = tokens.iterator();
+        while (it.hasNext()) {
+            Token t = it.next();
+            if(t.getExpirationDate().before(new Date())) {
+                repository.delete(t);
+                it.remove();
+            } else {
+                return t;
+            }
+        }
+        return null;
     }
 
     public void saveToken(Token token) {
