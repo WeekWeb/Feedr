@@ -15,7 +15,7 @@ import us.weekweb.feedr.Services.MongoTokenService;
 public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String redirectEverythingElseHome(){
+    public String redirectHome(){
         return "redirect:/index.html";
     }
 

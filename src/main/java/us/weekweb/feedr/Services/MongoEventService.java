@@ -31,6 +31,8 @@ public class MongoEventService {
             if(event.getTimeOfEvent().before(new Date())) {
                 repository.delete(event);
                 it.remove();
+            } else {
+                break;
             }
         }
         return events;
