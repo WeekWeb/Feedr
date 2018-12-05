@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS} from "@angular/common/http";
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+
 
 
 import { AppComponent } from './app.component';
@@ -54,11 +56,19 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDvLtYPYyASlQKppwzjsx7lsk9_aTgmO0A'
+    }),
     FormsModule,
     HttpClientModule, //needed for http get, post, delete etc...
     NgbModule.forRoot()
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: sessionInterceptor, multi: true}, FoodTypeService],//interceptor
+
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: sessionInterceptor, multi: true}, FoodTypeService,
+    GoogleMapsAPIWrapper
+    ],//interceptor
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
