@@ -3,6 +3,7 @@ import { FormsModule} from "@angular/forms";
 import { SearchBarFilterPipe } from "../search-bar-filter.pipe";
 import {EventService} from "../event.service";
 import {EventContent} from "../appModels/EventContent.model";
+import {FoodTypeService} from "../food-type-service.service";
 
 @Component({
   selector: 'app-content-main',
@@ -17,7 +18,9 @@ export class ContentMainComponent implements OnInit {
   public mdys = [];
   public datearray = [];
   public datearray_2 = [];
-  constructor(private eventService: EventService) {
+  public foodType;
+
+  constructor(private eventService: EventService, private foodTypeService: FoodTypeService) {
     this.eventService.getAllEvents().subscribe((data) => this.events = data,
       error => {console.log('cant get events')},
       ()=>{
@@ -36,7 +39,8 @@ export class ContentMainComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.eventService.getAllEvents().subscribe((data) => this.events = data);
+    this.foodTypeService.foodType.subscribe((type) => this.foodType = type);
   }
 
   javaDateToNgDate(str: string){
@@ -48,7 +52,8 @@ export class ContentMainComponent implements OnInit {
     datearray.push(mdy);
     datearray.push(time_[0]+':'+time_[1]);
     return datearray;
-  }
+
+
 
   sortEventDate(es: EventContent[]){
     es.sort(this.dateCompare);

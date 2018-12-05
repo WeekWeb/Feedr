@@ -13,6 +13,7 @@ import us.weekweb.feedr.Services.MongoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -40,7 +41,7 @@ public class LoginController {
                 UserDetails is_user = userDb.loadUserByUsername(user.getEmail());
                 if(is_user == null) {
                     userDb.saveUser(user);
-                    return ResponseEntity.ok(createToken(user.getEmail()));
+                    return ResponseEntity.ok(getToken(user.getEmail()));
                 } else {
                     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already exists");
                 }
@@ -64,11 +65,8 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with email '" + "' not found.");
 
         if(bCryptPasswordEncoder.matches(loginInfo.get("password"), user.getPassword())) {
-            Token token = createToken(loginInfo.get("email"));
-            if(token != null)
-                return ResponseEntity.ok(token);
-            else
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already logged in!");
+            Token token = getToken(loginInfo.get("email"));
+            return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed. Incorrect Password");
         }
@@ -87,10 +85,14 @@ public class LoginController {
                 if(foundToken == null)
                     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with email '" + token.getEmail() + "' not found.");
 
-                if(foundToken.getHash().equals(token.getHash()))
+                if(foundToken.getHash().equals(token.getHash()) && foundToken.getExpirationDate().after(new Date())) {
+                    //If we successfully authenticate, we need to reset expiration date on the token
+                    foundToken.setExpirationDate();
+                    tokenDb.saveToken(foundToken);
                     return ResponseEntity.ok("Good token");
-                else
+                } else {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token failed. Bad token");
+                }
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("One of the fields for the token is null");
             }
@@ -99,13 +101,14 @@ public class LoginController {
         }
     }
 
-    private Token createToken(String email) {
-        if(tokenDb.loadTokenByUsername(email) == null) {
+    private Token getToken(String email) {
+        Token token = tokenDb.loadTokenByUsername(email);
+        if(token == null || token.getExpirationDate().before(new Date())) {
             Token newToken = new Token(email);
             tokenDb.saveToken(newToken);
             return newToken;
         } else {
-            return null;
+            return token;
         }
     }
 }

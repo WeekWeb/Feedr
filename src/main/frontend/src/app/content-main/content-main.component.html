@@ -8,9 +8,10 @@
   </div>
   <div id="content-listings" class ="col-sm-8">
     <ul >
-      <li *ngFor="let event of events | searchBarFilter:term; index as i" >
+      <li *ngFor="let event of events | searchBarFilter:term:foodType; index as i" >
         <h2>{{event.name}}</h2>
         <p>{{event.ownerEmail}}</p>
+        <p>{{event.typeOfFood.charAt(0).toUpperCase() + event.typeOfFood.slice(1).toLowerCase()}}</p>
         <p>{{event.description}}</p>
         <p>{{event.typeOfFood}}</p>
         <p><span>Date: {{mdys[i]}}</span> Time :{{eventstime[i]}}<span>  |  </span><span>Address: {{event.location}}</span></p>

@@ -22,6 +22,9 @@ import { AdminContentMainComponent } from './admin-content-main/admin-content-ma
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { GoogleMapFrameComponent } from './google-map-frame/google-map-frame.component';
 import { LowbarAdminComponent } from './lowbar-admin/lowbar-admin.component';
+import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FoodTypeService } from "./food-type-service.service";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -46,14 +49,16 @@ const routes: Routes = [
     EditEventComponent,
     GoogleMapFrameComponent,
     LowbarAdminComponent,
+    DropdownFilterComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     FormsModule,
-    HttpClientModule //needed for http get, post, delete etc...
+    HttpClientModule, //needed for http get, post, delete etc...
+    NgbModule.forRoot()
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: sessionInterceptor, multi: true}],//interceptor
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: sessionInterceptor, multi: true}, FoodTypeService],//interceptor
   bootstrap: [AppComponent]
 })
 export class AppModule { }
