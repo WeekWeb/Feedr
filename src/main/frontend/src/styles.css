@@ -176,7 +176,7 @@ ul.CTAs a {
   width: 100%;
 }
 
-#gmap {
+#map {
   height: 150%;
   background-color: white;
   margin-top: 180px;
@@ -221,7 +221,7 @@ ul.CTAs a {
     width: 100%;
   }
 
-  #gmap{
+  #map{
     display: none;
   }
   #contentadmin {
