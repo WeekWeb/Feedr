@@ -8,7 +8,7 @@ public class Event {
 
     public enum FoodType
     {
-        MEXICAN, PIZZA, ITALIAN
+        MEXICAN, ITALIAN, SEAFOOD, PIZZA, INDIAN, BBQ, CHINESE, JAPANESE, THAI, KOREAN
     }
 
     @Id
