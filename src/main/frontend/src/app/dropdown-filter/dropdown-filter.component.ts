@@ -10,6 +10,7 @@ import {FoodTypeService} from "../food-type-service.service";
 export class DropdownFilterComponent implements OnInit {
 
   public foodTypes = [
+    "",
     'Mexican',
     'Italian',
     'Seafood',
