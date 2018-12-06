@@ -19,7 +19,6 @@ export class CreateEventComponent implements OnInit {
     this.event.timeOfEvent = this.ngDatetoJavaDate();
     this.event.ownerEmail = localStorage.getItem("email");
     this.ces.createEvent(this.event).subscribe(data=>{
-      location.reload();
     },error=>{
       console.log("cant create event");
     },()=>{

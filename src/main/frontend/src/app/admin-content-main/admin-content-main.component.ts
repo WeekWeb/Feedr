@@ -53,7 +53,7 @@ export class AdminContentMainComponent implements OnInit {
     this.ces.deleteEvent(ec).subscribe(data=>{
       console.log(data);
     },error1 => {},()=>{
-      location.reload()});
+      });
   }
 
   javaDateToNgDate(str: string){

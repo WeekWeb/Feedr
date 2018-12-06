@@ -28,7 +28,6 @@ export class EditEventComponent implements OnInit {
     },error=>{
       console.log(error);
     },()=>{
-      location.reload();
     })
   }
 
